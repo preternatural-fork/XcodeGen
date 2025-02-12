@@ -1,10 +1,10 @@
-// swift-tools-version:5.7
+// swift-tools-version:5.10
 
 import PackageDescription
 
 let package = Package(
     name: "XcodeGen",
-    platforms: [.macOS(.v10_13)],
+    platforms: [.macOS(.v13)],
     products: [
         .executable(name: "xcodegen", targets: ["XcodeGen"]),
         .library(name: "XcodeGenKit", targets: ["XcodeGenKit"]),
@@ -16,10 +16,9 @@ let package = Package(
         .package(url: "https://github.com/yonaskolb/JSONUtilities.git", from: "4.2.0"),
         .package(url: "https://github.com/kylef/Spectre.git", from: "0.9.2"),
         .package(url: "https://github.com/onevcat/Rainbow.git", from: "4.0.0"),
-        .package(url: "https://github.com/tuist/XcodeProj.git", from: "8.16.0"),
+        .package(url: "https://github.com/PreternaturalAI/XcodeProj.git", branch: "main"),
         .package(url: "https://github.com/jakeheis/SwiftCLI.git", from: "6.0.3"),
         .package(url: "https://github.com/mxcl/Version", from: "2.0.0"),
-        .package(url: "https://github.com/freddi-kit/ArtifactBundleGen", from: "0.0.6")
     ],
     targets: [
         .executableTarget(name: "XcodeGen", dependencies: [

@@ -138,7 +138,6 @@ public struct Scheme: Equatable {
         public var postActions: [ExecutionAction]
         public var environmentVariables: [XCScheme.EnvironmentVariable]
         public var enableGPUFrameCaptureMode: XCScheme.LaunchAction.GPUFrameCaptureMode
-        public var enableGPUValidationMode: XCScheme.LaunchAction.GPUValidationMode
         public var disableMainThreadChecker: Bool
         public var stopOnEveryMainThreadCheckerIssue: Bool
         public var disableThreadPerformanceChecker: Bool
@@ -161,7 +160,6 @@ public struct Scheme: Equatable {
             postActions: [ExecutionAction] = [],
             environmentVariables: [XCScheme.EnvironmentVariable] = [],
             enableGPUFrameCaptureMode: XCScheme.LaunchAction.GPUFrameCaptureMode = XCScheme.LaunchAction.defaultGPUFrameCaptureMode,
-            enableGPUValidationMode: XCScheme.LaunchAction.GPUValidationMode = XCScheme.LaunchAction.GPUValidationMode.enabled,
             disableMainThreadChecker: Bool = disableMainThreadCheckerDefault,
             stopOnEveryMainThreadCheckerIssue: Bool = stopOnEveryMainThreadCheckerIssueDefault,
             disableThreadPerformanceChecker: Bool = disableThreadPerformanceCheckerDefault,
@@ -182,7 +180,6 @@ public struct Scheme: Equatable {
             self.environmentVariables = environmentVariables
             self.disableMainThreadChecker = disableMainThreadChecker
             self.enableGPUFrameCaptureMode = enableGPUFrameCaptureMode
-            self.enableGPUValidationMode = enableGPUValidationMode
             self.stopOnEveryMainThreadCheckerIssue = stopOnEveryMainThreadCheckerIssue
             self.disableThreadPerformanceChecker = disableThreadPerformanceChecker
             self.language = language
@@ -484,11 +481,6 @@ extension Scheme.Run: JSONObjectConvertible {
         } else {
             enableGPUFrameCaptureMode = XCScheme.LaunchAction.defaultGPUFrameCaptureMode
         }
-        if let gpuValidationMode: String = jsonDictionary.json(atKeyPath: "enableGPUValidationMode") {
-            enableGPUValidationMode = XCScheme.LaunchAction.GPUValidationMode.fromJSONValue(gpuValidationMode)
-        } else {
-            enableGPUValidationMode = XCScheme.LaunchAction.defaultGPUValidationMode
-        }
         disableMainThreadChecker = jsonDictionary.json(atKeyPath: "disableMainThreadChecker") ?? Scheme.Run.disableMainThreadCheckerDefault
         stopOnEveryMainThreadCheckerIssue = jsonDictionary.json(atKeyPath: "stopOnEveryMainThreadCheckerIssue") ?? Scheme.Run.stopOnEveryMainThreadCheckerIssueDefault
         disableThreadPerformanceChecker = jsonDictionary.json(atKeyPath: "disableThreadPerformanceChecker") ?? Scheme.Run.disableThreadPerformanceCheckerDefault
@@ -533,10 +525,6 @@ extension Scheme.Run: JSONEncodable {
 
         if enableGPUFrameCaptureMode != XCScheme.LaunchAction.defaultGPUFrameCaptureMode {
             dict["enableGPUFrameCaptureMode"] = enableGPUFrameCaptureMode.toJSONValue()
-        }
-        
-        if enableGPUValidationMode != XCScheme.LaunchAction.defaultGPUValidationMode {
-            dict["enableGPUValidationMode"] = enableGPUValidationMode.toJSONValue()
         }
 
         if disableMainThreadChecker != Scheme.Run.disableMainThreadCheckerDefault {
@@ -989,32 +977,6 @@ extension XCScheme.LaunchAction.GPUFrameCaptureMode: JSONEncodable {
             return .disabled
         default:
             fatalError("Invalid enableGPUFrameCaptureMode value. Valid values are: autoEnabled, metal, openGL, disabled")
-        }
-    }
-}
-
-extension XCScheme.LaunchAction.GPUValidationMode: JSONEncodable {
-    public func toJSONValue() -> Any {
-        switch self {
-        case .enabled:
-            return "enabled"
-        case .disabled:
-            return "disabled"
-        case .extended:
-            return "extended"
-        }
-    }
-    
-    static func fromJSONValue(_ string: String) -> XCScheme.LaunchAction.GPUValidationMode {
-        switch string {
-        case "enabled":
-            return .enabled
-        case "disabled":
-            return .disabled
-        case "extended":
-            return .extended
-        default:
-            fatalError("Invalid enableGPUValidationMode value. Valid values are: enable, disable, extended")
         }
     }
 }
