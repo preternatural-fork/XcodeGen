@@ -1,5 +1,4 @@
-import Foundation
-import Version
+import FoundationX
 
 public struct SpecValidationError: Error, CustomStringConvertible {
 

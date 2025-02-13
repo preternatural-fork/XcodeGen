@@ -1,5 +1,5 @@
 {
-  "originHash" : "1a2ca04cefe975d048c6b9a2d5dea0a62e26b7ec8385dfd7000cefa495f5ebc7",
+  "originHash" : "6b8930e894f366cd858e53348a3c8191b1ef3fc3491fb45ba4026fa18b37353a",
   "pins" : [
     {
       "identity" : "aexml",
@@ -26,15 +26,6 @@
       "state" : {
         "revision" : "3bfd2737b700b9a36565a8c94f4ad2b050a5e574",
         "version" : "1.0.1"
-      }
-    },
-    {
-      "identity" : "rainbow",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/onevcat/Rainbow.git",
-      "state" : {
-        "revision" : "0c627a4f8a39ef37eadec1ceec02e4a7f55561ac",
-        "version" : "4.1.0"
       }
     },
     {
@@ -89,15 +80,6 @@
       "state" : {
         "revision" : "2e949055d9797c1a6bddcda0e58dada16cc8e970",
         "version" : "6.0.3"
-      }
-    },
-    {
-      "identity" : "version",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/mxcl/Version",
-      "state" : {
-        "revision" : "303a0f916772545e1e8667d3104f83be708a723c",
-        "version" : "2.1.0"
       }
     },
     {

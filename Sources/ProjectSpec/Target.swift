@@ -1,7 +1,6 @@
-import Foundation
+import FoundationX
 import JSONUtilities
 import XcodeProj
-import Version
 
 public struct LegacyTarget: Equatable {
     public static let passSettingsDefault = false
@@ -309,9 +308,9 @@ extension Target: NamedJSONDictionaryConvertible {
         }
         
         if let string: String = jsonDictionary.json(atKeyPath: "deploymentTarget") {
-            deploymentTarget = try Version.parse(string)
+            deploymentTarget = try Version(string).unwrap()
         } else if let double: Double = jsonDictionary.json(atKeyPath: "deploymentTarget") {
-            deploymentTarget = try Version.parse(String(double))
+            deploymentTarget = try Version(String(double)).unwrap()
         } else {
             deploymentTarget = nil
         }

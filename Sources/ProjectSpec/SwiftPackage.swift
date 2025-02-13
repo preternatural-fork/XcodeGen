@@ -1,7 +1,7 @@
 import Foundation
 import XcodeProj
 import JSONUtilities
-import Version
+import FoundationX
 
 public enum SwiftPackage: Equatable {
 
@@ -45,17 +45,17 @@ extension SwiftPackage: JSONObjectConvertible {
         switch versionRequirement {
 
         case .upToNextMajorVersion(let version):
-            try _ = Version.parse(version)
+                try _ = Version(version).unwrap()
 
         case .upToNextMinorVersion(let version):
-            try _ = Version.parse(version)
+                try _ = Version(version).unwrap()
 
         case .range(let from, let to):
-            try _ = Version.parse(from)
-            try _ = Version.parse(to)
+                try _ = Version(from).unwrap()
+                try _ = Version(to).unwrap()
 
         case .exact(let version):
-            try _ = Version.parse(version)
+                try _ = Version(version).unwrap()
 
         default:
             break

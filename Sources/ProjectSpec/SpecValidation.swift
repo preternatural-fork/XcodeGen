@@ -1,7 +1,6 @@
-import Foundation
+import FoundationX
 import JSONUtilities
 import PathKit
-import Version
 
 extension Project {
 
@@ -264,7 +263,7 @@ extension Project {
     }
 
     public func validateMinimumXcodeGenVersion(_ xcodeGenVersion: Version) throws {
-        if let minimumXcodeGenVersion = options.minimumXcodeGenVersion, xcodeGenVersion < minimumXcodeGenVersion {
+        if let minimumXcodeGenVersion = options.minimumXcodeGenVersion, (xcodeGenVersion.major, xcodeGenVersion.minor ?? 0, xcodeGenVersion.patch ?? 0) < (minimumXcodeGenVersion.major, minimumXcodeGenVersion.minor ?? 0, minimumXcodeGenVersion.patch ?? 0) {
             throw SpecValidationError(errors: [SpecValidationError.ValidationError.invalidXcodeGenVersion(minimumVersion: minimumXcodeGenVersion, version: xcodeGenVersion)])
         }
     }

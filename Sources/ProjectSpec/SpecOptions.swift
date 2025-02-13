@@ -1,6 +1,5 @@
-import Foundation
+import FoundationX
 import JSONUtilities
-import Version
 
 public struct SpecOptions: Equatable {
     public static let settingPresetsDefault = SettingPresets.all
@@ -134,7 +133,7 @@ extension SpecOptions: JSONObjectConvertible {
 
     public init(jsonDictionary: JSONDictionary) throws {
         if let string: String = jsonDictionary.json(atKeyPath: "minimumXcodeGenVersion") {
-            minimumXcodeGenVersion = try Version.parse(string)
+            minimumXcodeGenVersion = try Version(string).unwrap()
         }
 
         carthageBuildPath = jsonDictionary.json(atKeyPath: "carthageBuildPath")

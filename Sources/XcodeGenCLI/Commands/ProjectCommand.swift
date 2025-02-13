@@ -1,10 +1,9 @@
-import Foundation
+import FoundationX
 import SwiftCLI
 import ProjectSpec
 import XcodeGenKit
 import PathKit
 import XcodeGenCore
-import Version
 
 class ProjectCommand: Command {
 
@@ -70,13 +69,13 @@ class ProjectCommand: Command {
 
     func warning(_ string: String) {
         if !quiet {
-            stdout.print(string.yellow)
+            stdout.print(string)
         }
     }
 
     func success(_ string: String) {
         if !quiet {
-            stdout.print(string.green)
+            stdout.print(string)
         }
     }
 }

@@ -1,9 +1,8 @@
-import Foundation
+import FoundationX
 import PathKit
 import ProjectSpec
 import XcodeProj
 import Yams
-import Version
 
 public class PBXProjGenerator {
 
@@ -482,7 +481,7 @@ public class PBXProjGenerator {
         let buildSettings = defaultConfiguration.buildSettings
         let settings = Settings(buildSettings: buildSettings, configSettings: [:], groups: [])
         let deploymentTargetString = buildSettings[platform.deploymentTargetSetting] as? String
-        let deploymentTarget = deploymentTargetString == nil ? nil : try Version.parse(deploymentTargetString!)
+        let deploymentTarget = deploymentTargetString == nil ? nil : try Version(deploymentTargetString!).unwrap()
         let requiresObjCLinking = (buildSettings["OTHER_LDFLAGS"] as? String)?.contains("-ObjC") ?? (productType == .staticLibrary)
         let dependencyTarget = Target(
             name: targetObject.name,

@@ -1,6 +1,5 @@
-import Foundation
+import FoundationX
 import JSONUtilities
-import Version
 
 public struct DeploymentTarget: Equatable {
 
@@ -65,7 +64,7 @@ extension Version {
 
     /// doesn't print patch if 0
     public var deploymentTarget: String {
-        "\(major).\(minor)\(patch > 0 ? ".\(patch)" : "")"
+        "\(major).\(minor ?? 0)\((patch ?? 0) > 0 ? ".\(patch ?? 0)" : "")"
     }
 }
 
@@ -75,9 +74,9 @@ extension DeploymentTarget: JSONObjectConvertible {
 
         func parseVersion(_ platform: String) throws -> Version? {
             if let string: String = jsonDictionary.json(atKeyPath: .key(platform)) {
-                return try Version.parse(string)
+                return try Version(string).unwrap()
             } else if let double: Double = jsonDictionary.json(atKeyPath: .key(platform)) {
-                return try Version.parse(double)
+                return try Version(String(double)).unwrap()
             } else {
                 return nil
             }

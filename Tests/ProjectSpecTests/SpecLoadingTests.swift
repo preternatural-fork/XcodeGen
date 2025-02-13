@@ -6,7 +6,6 @@ import XcodeProj
 import XCTest
 import Yams
 import TestSupport
-import Version
 
 class SpecLoadingTests: XCTestCase {
 

@@ -1,7 +1,6 @@
-import Foundation
+import FoundationX
 import ProjectSpec
 import SwiftCLI
-import Version
 
 public class XcodeGenCLI {
     let cli: CLI

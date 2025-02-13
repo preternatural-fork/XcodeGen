@@ -1,9 +1,8 @@
-import Foundation
+import FoundationX
 import SwiftCLI
 import PathKit
 import ProjectSpec
 import Yams
-import Version
 import XcodeGenKit
 
 class DumpCommand: ProjectCommand {

@@ -1554,7 +1554,7 @@ class ProjectGeneratorTests: XCTestCase {
                 let pbxProject = try project.generatePbxProj(specValidate: false)
                 let nativeTarget = try unwrap(pbxProject.nativeTargets.first(where: { $0.name == app.name }))
 
-                let projectSpecDependency = try unwrap(nativeTarget.packageProductDependencies.first(where: { $0.productName == "ProjectSpec" }))
+                let projectSpecDependency = try unwrap((nativeTarget.packageProductDependencies ?? []).first(where: { $0.productName == "ProjectSpec" }))
 
                 try expect(projectSpecDependency.package?.name) == "XcodeGen"
                 try expect(projectSpecDependency.package?.versionRequirement) == .branch("master")

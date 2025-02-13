@@ -1,10 +1,9 @@
-import Foundation
+import FoundationX
 import PathKit
 import ProjectSpec
 import SwiftCLI
 import XcodeGenKit
 import XcodeProj
-import Version
 
 class CacheCommand: ProjectCommand {
 

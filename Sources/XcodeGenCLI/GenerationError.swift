@@ -1,7 +1,6 @@
 import Foundation
 import PathKit
 import ProjectSpec
-import Rainbow
 import SwiftCLI
 
 enum GenerationError: Error, CustomStringConvertible, ProcessError {
@@ -33,7 +32,7 @@ enum GenerationError: Error, CustomStringConvertible, ProcessError {
     }
 
     var message: String? {
-        description.red
+        description
     }
 
     var exitStatus: Int32 {

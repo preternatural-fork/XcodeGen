@@ -4,7 +4,6 @@ import Spectre
 import XcodeProj
 import XCTest
 import TestSupport
-import Version
 
 class ProjectSpecTests: XCTestCase {
 
